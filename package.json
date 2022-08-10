@@ -1,0 +1,11 @@
+{
+  "name": "windspeak",
+  "version": "0.1.0",
+  "description": "A instant messanger app made as a practice project for my portfolio.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Evan S Rathore",
+  "license": "MIT"
+}
