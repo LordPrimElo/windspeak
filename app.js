@@ -9,15 +9,17 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 const bodyParser = require("body-parser")
-
+const mongoose = require("mongoose")
 
 
 // ROUTE IMPORTS
 const mainRoutes = require("./routes/main")
 
+// MODEL IMPORTS
+const History = require("./models/history")
 
 // ======================================================
-// CONFIGURATION
+// CONFIGRATION
 // ======================================================
 // Express Config
 app.set("view engine", "ejs")
@@ -39,6 +41,16 @@ io.on("connection", (socket) => {
     
   })
 })
+
+// Mongoose Config
+try {
+	mongoose.connect(config.db.connection)
+} catch (e) {
+	console.log("Could not connect using config. Probable Cause: NOT WORKING LOCALLY")
+	console.log(e)
+	mongoose.connect(process.env.DB_CONNECTION_STRING)
+}
+mongoose.Promise = global.Promise
 
 
 // Route Config
